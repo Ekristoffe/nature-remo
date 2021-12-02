@@ -1,4 +1,4 @@
-import axios, { AxiosInstance } from 'axios'
+import axios, { AxiosError, AxiosInstance } from 'axios'
 import { ParsedUrlQueryInput, stringify } from 'querystring'
 import * as NatureRemo from './interfaces'
 
@@ -338,12 +338,11 @@ export class Cloud {
       const response = await this.instance.post(path, stringify(body))
       return response.data
     } catch (error) {
-      if (error.response) {
-        // Add the error message, it can be usefull in detecting what's heppening.
+      const errResponse = (error as AxiosError).response
+      if (errResponse) {
         throw new Error(
-          `${error.response.statusText} (${error.response.status})`
+          `${errResponse.statusText} (${errResponse.status})`
         )
-        // throw new Error(`Response code is out of 2xx: ${error.response.status}`)
       }
       throw error
     }
@@ -354,10 +353,10 @@ export class Cloud {
       const response = await this.instance.get(path)
       return response.data
     } catch (error) {
-      if (error.response) {
-        // Add the error message, it can be usefull in detecting what's heppening.
+      const errResponse = (error as AxiosError).response
+      if (errResponse) {
         throw new Error(
-          `${error.response.statusText} (${error.response.status})`
+          `${errResponse.statusText} (${errResponse.status})`
         )
       }
       throw error

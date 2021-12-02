@@ -8,35 +8,36 @@
     "clean": "shx rm -rf lib",
     "dev": "npm run tsupCall -- --watch",
     "docs": "typedoc --mode file --out docs --excludeExternals --excludePrivate --exclude '**/__tests__/*' src && shx touch ./docs/.nojekyll",
+    "prepare": "husky install",
     "prepublishOnly": "npm run clean && npm run build",
     "release": "release-it",
-    "test": "jest --coverage",
+    "test": "tsc --noEmit && jest --coverage",
     "tsupCall": "tsup src/index.ts -d lib"
   },
-  "types": "lib/index.d.ts",
   "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "files": [
     "lib"
   ],
   "dependencies": {
-    "axios": "^0.21.1"
+    "axios": "^0.24.0"
   },
   "devDependencies": {
-    "@types/jest": "^26.0.10",
+    "@types/jest": "^27.0.2",
     "@types/nock": "^11.1.0",
-    "@types/node": "^14.6.0",
+    "@types/node": "^16.0.1",
     "codacy-coverage": "^3.4.0",
-    "husky": "^4.2.1",
-    "jest": "26.4.2",
-    "lint-staged": "^10.2.12",
-    "nock": "^13.0.4",
-    "prettier": "^2.1.0",
-    "pretty-quick": "^3.0.0",
+    "husky": "^7.0.1",
+    "jest": "27.3.1",
+    "lint-staged": "^11.0.0",
+    "nock": "^13.1.1",
+    "prettier": "^2.3.2",
+    "pretty-quick": "^3.1.1",
     "shx": "^0.3.2",
-    "ts-jest": "^26.2.0",
-    "tsup": "^3.6.1",
-    "typedoc": "^0.19.0",
-    "typescript": "^4.0.2"
+    "ts-jest": "^27.0.3",
+    "tsup": "^5.5.0",
+    "typedoc": "^0.22.7",
+    "typescript": "^4.3.5"
   },
   "husky": {
     "hooks": {
